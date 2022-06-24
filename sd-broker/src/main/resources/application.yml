@@ -1,8 +1,8 @@
 server:
-  port: 16002
+  port: 16003
 spring:
   application:
-    name: user-service
+    name: broker-service
   datasource:
     username: postgres
     password: root
@@ -15,15 +15,3 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
-#  redis:
-#    sentinel:
-#      enabled: false
-#    host: "localhost"
-#    port: 6379
-
-  flyway:
-    baseline-on-migrate: true
-
-
-internal:
-  timeout: 1000

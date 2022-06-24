@@ -1,0 +1,18 @@
+server:
+  port: 16001
+
+spring:
+  application:
+    name: sd-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: sdUser
+          uri: http://localhost:16002
+          predicates:
+            - Path=/user/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

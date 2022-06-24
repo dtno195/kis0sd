@@ -11,10 +11,15 @@ import org.springframework.web.bind.annotation.*;
  * @author D
  */
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
   @Autowired
   private UserService userService;
+
+  @GetMapping("/message")
+  public String test() {
+    return "Hello, this is user service";
+  }
 
   @GetMapping("/")
   public String users(){
