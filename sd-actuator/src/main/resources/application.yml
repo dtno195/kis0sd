@@ -1,0 +1,17 @@
+server:
+  port: 16004
+spring:
+  application:
+    name: sd-actuator
+  datasource:
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost:5432/sd_actuator
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
