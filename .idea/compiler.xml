@@ -13,7 +13,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="kis_sd" target="16" />
       <module name="sd-actuator" target="11" />
+      <module name="sd-broker" target="11" />
+      <module name="sd-gateway" target="11" />
+      <module name="sd-user" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
