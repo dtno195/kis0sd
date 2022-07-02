@@ -8,11 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sd-gateway" />
-        <module name="sd-actuator" />
         <module name="sd-broker" />
         <module name="sd-user" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="sd-actuator" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
