@@ -1,14 +1,13 @@
-package com.sd.broker;
+package com.sd;
 
-import com.sd.broker.config.KafkaTopicConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SdBrokerApplication {
+public class SdCommonApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(SdBrokerApplication.class, args);
+    SpringApplication.run(SdCommonApplication.class, args);
   }
 
 }

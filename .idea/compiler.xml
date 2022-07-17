@@ -8,14 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sd-gateway" />
-        <module name="sd-broker" />
-        <module name="sd-user" />
+        <module name="sd-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="kis_sd" target="16" />
       <module name="sd-actuator" target="11" />
       <module name="sd-broker" target="11" />
+      <module name="sd-common" target="11" />
       <module name="sd-gateway" target="11" />
       <module name="sd-user" target="11" />
     </bytecodeTargetLevel>
@@ -24,6 +24,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="sd-actuator" options="-parameters" />
       <module name="sd-broker" options="-parameters" />
+      <module name="sd-common" options="-parameters" />
       <module name="sd-gateway" options="-parameters" />
       <module name="sd-user" options="-parameters" />
     </option>

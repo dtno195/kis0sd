@@ -15,3 +15,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+  kafka:
+    consumer:
+      group-id: sd-broker
+      auto-offset-reset: earliest
+      bootstrap-servers: localhost:9092

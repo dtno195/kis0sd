@@ -13,7 +13,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>sd-user</name>
     <description>sd-user</description>
+    <packaging>pom</packaging>
 
+    <modules>
+        <module>../sd-common</module>
+    </modules>
 
     <properties>
         <java.version>11</java.version>

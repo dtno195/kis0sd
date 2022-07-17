@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/kis_sd.iml" filepath="$PROJECT_DIR$/kis_sd.iml" />
       <module fileurl="file://$PROJECT_DIR$/sd-broker/sd-broker.iml" filepath="$PROJECT_DIR$/sd-broker/sd-broker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sd-common/sd-common.iml" filepath="$PROJECT_DIR$/sd-common/sd-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/sd-gateway/sd-gateway.iml" filepath="$PROJECT_DIR$/sd-gateway/sd-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/sd-user/sd-user.iml" filepath="$PROJECT_DIR$/sd-user/sd-user.iml" />
     </modules>
