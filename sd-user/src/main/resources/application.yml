@@ -15,15 +15,18 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
-#  redis:
-#    sentinel:
-#      enabled: false
-#    host: "localhost"
-#    port: 6379
-
   flyway:
     baseline-on-migrate: true
 
 
 internal:
   timeout: 1000
+
+security:
+  jwt:
+    secret-key: V4q2#xY5a6cUl!&w8z9BTIFTN4&mtH4Oq#uYvw3$5lzJR&DINQTvELlEWCDQ81*9geHcDxD7
+    # 1.800.000 milliseconds = 30 minutes
+    expiration: 1800000000000
+  refresh-token:
+    # 90 days
+    expiration: 90

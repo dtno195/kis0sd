@@ -1,7 +1,6 @@
 package com.sd.service.impl;
 
 import com.sd.dto.UserVO;
-import com.sd.entity.UserEntity;
 import com.sd.repository.UserRepository;
 import com.sd.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

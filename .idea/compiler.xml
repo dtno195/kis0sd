@@ -8,7 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sd-gateway" />
-        <module name="sd-common" />
+        <module name="sd-broker" />
+        <module name="sd-user" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
