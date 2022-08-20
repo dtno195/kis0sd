@@ -67,7 +67,7 @@ public class JwtProvider {
       SecretKey key = Keys.hmacShaKeyFor(this.JWT_SECRET_KEY.getBytes());
       Jws<Claims> claimsJwt = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
       final String username = claimsJwt.getBody().get(User.Fields.username, String.class);
-
+      log.info("ClaimsJwt: {} ", claimsJwt.getBody());
       if (StringUtils.hasText(username)) {
         this.refreshTokenRepo.findByTokenIsActiveTrueAndUsernameEquals(username)
                 .orElseThrow(() -> new BusinessException(BusinessMessage.USER_NO_ACTIVE_REFRESH_TOKEN,

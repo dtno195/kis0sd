@@ -1,34 +1,60 @@
 package com.sd.service.impl;
 
+import com.sd.common.enums.Authority;
+import com.sd.common.enums.Language;
+import com.sd.common.exception.BusinessException;
+import com.sd.common.utils.Messages;
 import com.sd.dto.UserVO;
+import com.sd.dto.user.UserRequest;
+import com.sd.dto.user.UserResponse;
+import com.sd.entity.User;
 import com.sd.repository.UserRepository;
 import com.sd.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import javax.transaction.Transactional;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author D
  */
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class UserServiceImpl implements UserService {
-  @Autowired
-  private UserRepository userRepository;
 
-//  @Autowired
-//  BCryptPasswordEncoder encoder;
+  /**
+   * The User repository.
+   */
+  protected final UserRepository userRepository;
+
+  /**
+   * The Password encoder.
+   */
+  protected final PasswordEncoder passwordEncoder;
 
   @Override
-  public UserVO createUser(UserVO userVO) {
-//    ModelMapper modelMapper = new ModelMapper();
-//    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-//
-//    UserEntity userEntity = modelMapper.map(userVO, UserEntity.class);
-////    userEntity.setEncryptedPassword(encoder.encode(userVO.getPassword()));
-//    userEntity.setUserId(UUID.randomUUID().toString());
-//    userRepository.save(userEntity);
-    return userVO;
+  public UserResponse createUser(UserRequest userRequest) {
+
+    if (!userRequest.getPassword().equals(userRequest.getPasswordConfirmed())) {
+      throw new BusinessException(Messages.PASSWORD_NOT_MATCH);
+    }
+
+    Optional<User> user = this.userRepository.findByUsernameAndIsDeletedFalse(userRequest.getUsername());
+    if (user.isPresent()) {
+      throw new BusinessException(Messages.USER_EXISTED);
+    }
+    User newUserEntity = UserRequest.toEntity(userRequest);
+    newUserEntity.setLanguage(Objects.nonNull(userRequest.getLanguage()) ? userRequest.getLanguage() : Language.Vietnam);
+    newUserEntity.setPassword(this.passwordEncoder.encode(userRequest.getPassword()));
+    newUserEntity.setAuthority(Objects.nonNull(userRequest.getAuthority()) ? userRequest.getAuthority() : Authority.USER);
+
+
+
+    return UserResponse.fromEntity(this.userRepository.saveAndFlush(newUserEntity));
   }
 
 }

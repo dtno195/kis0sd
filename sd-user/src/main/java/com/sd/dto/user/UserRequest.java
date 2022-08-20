@@ -28,6 +28,9 @@ public class UserRequest {
    */
   private String password;
 
+  /**
+   * The Password Confirmed.
+   */
   private String passwordConfirmed;
 
   /**

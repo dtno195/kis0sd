@@ -59,7 +59,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/webjars/**",
             "/socket/**",
             "/actuator/**",
-            "actuator/httptrace/**"
+            "actuator/httptrace/**",
+            BASE_URL_V1 + "/**"
     };
   }
 
@@ -122,27 +123,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    *
    * @return the cors filter
    */
-  @Bean
-  public CorsFilter corsFilter() {
-    List<String> allowedOriginPatterns = Collections.singletonList("http://*:[*]");
-    List<String> allowedMethods = Stream.of(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE,
-                    HttpMethod.OPTIONS, HttpMethod.PATCH)
-            .map(HttpMethod::name)
-            .collect(Collectors.toList());
-    final CorsConfiguration configuration = new CorsConfiguration().setAllowedOriginPatterns(allowedOriginPatterns);
-
-    configuration.setAllowedMethods(Collections.unmodifiableList(allowedMethods));
-    // setAllowedHeaders is important! Without it, OPTIONS preflight request will fail with 403 Invalid CORS request
-    configuration.setAllowedHeaders(Collections.singletonList("*"));
-    configuration.setExposedHeaders(Collections.singletonList("*"));
-    // In case authentication is enabled, this flag MUST be set, otherwise CORS request will fail
-    configuration.setAllowCredentials(true);
-
-    final UrlBasedCorsConfigurationSource corsConfig = new UrlBasedCorsConfigurationSource();
-    corsConfig.registerCorsConfiguration("/**", configuration);
-
-    return new CorsFilter(corsConfig);
-  }
+//  @Bean
+//  public CorsFilter corsFilter() {
+//    List<String> allowedOriginPatterns = Collections.singletonList("http://*:[*]");
+//    List<String> allowedMethods = Stream.of(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE,
+//                    HttpMethod.OPTIONS, HttpMethod.PATCH)
+//            .map(HttpMethod::name)
+//            .collect(Collectors.toList());
+//    final CorsConfiguration configuration = new CorsConfiguration().setAllowedOriginPatterns(allowedOriginPatterns);
+//
+//    configuration.setAllowedMethods(Collections.unmodifiableList(allowedMethods));
+//    // setAllowedHeaders is important! Without it, OPTIONS preflight request will fail with 403 Invalid CORS request
+//    configuration.setAllowedHeaders(Collections.singletonList("*"));
+//    configuration.setExposedHeaders(Collections.singletonList("*"));
+//    // In case authentication is enabled, this flag MUST be set, otherwise CORS request will fail
+//    configuration.setAllowCredentials(true);
+//
+//    final UrlBasedCorsConfigurationSource corsConfig = new UrlBasedCorsConfigurationSource();
+//    corsConfig.registerCorsConfiguration("/**", configuration);
+//
+//    return new CorsFilter(corsConfig);
+//  }
 
   /**
    * Configure.
@@ -153,6 +154,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
+//            .cors().and().csrf().disable();
             .csrf().disable() // Project using JWT to authenticate request so CSRF is disabled
             .cors().and()
             .exceptionHandling().authenticationEntryPoint(this.jwtAuthenEntryPoint).and()

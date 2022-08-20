@@ -1,7 +1,10 @@
 package com.sd.controller;
 
 import com.sd.dto.UserVO;
+import com.sd.dto.user.UserRequest;
+import com.sd.dto.user.UserResponse;
 import com.sd.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,27 +17,24 @@ import java.util.List;
  * @author D
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/webapi/v1/user")
+@RequiredArgsConstructor
 public class UserController {
-  @Autowired
-  private UserService userService;
+  /**
+   * The User service.
+   */
+  protected final UserService userService;
 
   @GetMapping("/")
-  public String users(){
+  public String users() {
     return "Get all user working";
   }
 
-  @PostMapping("/create")
-  public ResponseEntity createUser(@RequestBody UserVO userVO) {
-    userService.createUser(userVO);
-    return ResponseEntity.status(HttpStatus.CREATED).body(userVO);
+  @PostMapping
+  public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
+    return ResponseEntity
+            .status(HttpStatus.CREATED)
+            .body(userService.createUser(userRequest));
   }
 
-  @GetMapping("/users")
-  public ResponseEntity<List<UserVO>> getAllUser() {
-    List<UserVO> userVOS = new ArrayList<>();
-    userVOS.add(new UserVO("Ducnt1", "123", "Ducnt", "Dustin", "ducnt@gmail.com"));
-    userVOS.add(new UserVO("Ducnt2", "456", "Ducnt2", "Dustin2", "ducnt2@gmail.com"));
-    return ResponseEntity.ok(userVOS);
-  }
 }

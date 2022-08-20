@@ -2,6 +2,7 @@ package com.sd.repository;
 
 import com.sd.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -20,4 +21,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
    * @return the {@link Optional#empty()} if no result, otherwise return the optional of user
    */
   Optional<User> findByUsernameAndIsDeletedFalse(String username);
+
+
+//  @Query(value = "SELECT username FROM User WHERE id = :id")
+  String findUsernameById(int userId);
 }
