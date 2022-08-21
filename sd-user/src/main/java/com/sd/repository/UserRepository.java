@@ -2,9 +2,11 @@ package com.sd.repository;
 
 import com.sd.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 /**
@@ -25,4 +27,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 //  @Query(value = "SELECT username FROM User WHERE id = :id")
   String findUsernameById(int userId);
+
+//  @Modifying
+//  @Query(value = "UPDATE User u SET u.lastLoginTime = :lastLoginTime WHERE u.id = :id")
+//  void updateLastLoginTime(long id, OffsetDateTime loginTime);
 }

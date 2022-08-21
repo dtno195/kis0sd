@@ -16,7 +16,7 @@ public class UserRequest {
   /**
    * The Id.
    */
-  private int id;
+  private long id;
 
   /**
    * The Username.

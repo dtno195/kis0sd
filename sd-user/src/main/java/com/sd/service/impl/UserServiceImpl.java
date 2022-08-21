@@ -3,8 +3,9 @@ package com.sd.service.impl;
 import com.sd.common.enums.Authority;
 import com.sd.common.enums.Language;
 import com.sd.common.exception.BusinessException;
+import com.sd.common.exception.BusinessMessage;
+import com.sd.common.exception.ResponseCode;
 import com.sd.common.utils.Messages;
-import com.sd.dto.UserVO;
 import com.sd.dto.user.UserRequest;
 import com.sd.dto.user.UserResponse;
 import com.sd.entity.User;
@@ -13,8 +14,10 @@ import com.sd.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
-import javax.transaction.Transactional;
+import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -36,6 +39,13 @@ public class UserServiceImpl implements UserService {
    */
   protected final PasswordEncoder passwordEncoder;
 
+  /**
+   * Create new user.
+   *
+   * @param userRequest the new user
+   * @return the user response
+   * @throws BusinessException the business exception
+   */
   @Override
   public UserResponse createUser(UserRequest userRequest) {
 
@@ -52,9 +62,67 @@ public class UserServiceImpl implements UserService {
     newUserEntity.setPassword(this.passwordEncoder.encode(userRequest.getPassword()));
     newUserEntity.setAuthority(Objects.nonNull(userRequest.getAuthority()) ? userRequest.getAuthority() : Authority.USER);
 
-
-
     return UserResponse.fromEntity(this.userRepository.saveAndFlush(newUserEntity));
   }
+
+  @Transactional(readOnly = true)
+  @Override
+  public UserResponse getById(long id) throws BusinessException {
+    return this.userRepository
+            .findById(id)
+            .map(UserResponse::fromEntity)
+            .orElseThrow(() -> new BusinessException(BusinessMessage.NOT_FOUND, ResponseCode.CODE_BUSINESS));
+  }
+
+
+  /**
+   * Update info user.
+   *
+   * @param updateUser the updated user
+   * @return the user response
+   * @throws BusinessException the business exception
+   */
+  @Override
+  public UserResponse update(UserRequest updateUser) throws BusinessException {
+    User currentUser = this.userRepository.findById(updateUser.getId())
+                                          .orElseThrow(() -> new BusinessException(BusinessMessage.NOT_FOUND));
+    if(StringUtils.hasText(updateUser.getPassword())) {
+      if(!updateUser.getPassword().equals(updateUser.getPasswordConfirmed())){
+        throw new BusinessException(Messages.PASSWORD_NOT_MATCH);
+      }
+      currentUser.setPassword(this.passwordEncoder.encode(updateUser.getPassword()));
+    }
+    // Không cho cập nhật username
+    currentUser.setAuthority(Objects.nonNull(updateUser.getAuthority()) ? updateUser.getAuthority() : currentUser.getAuthority());
+    currentUser.setFirstName(updateUser.getFirstName());
+    currentUser.setLastName(updateUser.getLastName());
+    currentUser.setPhone(updateUser.getPhone());
+    currentUser.setMail(updateUser.getMail());
+    return UserResponse.fromEntity(this.userRepository.save(currentUser));
+  }
+
+  /**
+   * Delete user.
+   *
+   * @param id the id
+   * @throws BusinessException the business exception
+   */
+  @Override
+  public void delete(long id) throws BusinessException {
+    this.userRepository.deleteById(id);
+  }
+
+
+  /**
+   * Update last login time.
+   *
+   * @param id        the user id
+   * @param loginTime the login time
+   * @throws BusinessException the business exception
+   */
+//  @Override
+//  public void updateLastLoginTime(long id, OffsetDateTime loginTime) throws BusinessException {
+//    this.userRepository.updateLastLoginTime(id, loginTime);
+//  }
 
 }

@@ -18,7 +18,7 @@ public final class UserDetailsImpl implements UserDetails {
   /**
    * The Id.
    */
-  private final int id;
+  private final long id;
 
   /**
    * The Username.
@@ -41,7 +41,7 @@ public final class UserDetailsImpl implements UserDetails {
    *
    * @return the id
    */
-  public int getId() {
+  public long getId() {
     return this.id;
   }
 
