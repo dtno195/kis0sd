@@ -1,19 +1,20 @@
 package com.sd.controller;
 
 import com.sd.common.exception.BusinessException;
-import com.sd.dto.UserVO;
 import com.sd.dto.user.UserRequest;
 import com.sd.dto.user.UserResponse;
+import com.sd.dto.user.UserSearchRequest;
 import com.sd.service.UserService;
+import com.sd.util.AppUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author D
@@ -27,9 +28,17 @@ public class UserController {
    */
   protected final UserService userService;
 
-  @GetMapping("/")
-  public String users() {
-    return "Get all user working";
+
+  /**
+   * Gets all user paging.
+   *
+   * @param pagingRequest the paging request
+   * @return the all user paging
+   */
+  @GetMapping
+  public ResponseEntity<Page<UserResponse>> getAllUserPaging(UserSearchRequest pagingRequest) {
+    Pageable paging = AppUtils.getPaging(pagingRequest);
+    return ResponseEntity.ok().body(this.userService.getAllPaging(pagingRequest.getKeySearch(), pagingRequest.getAuthority(), paging));
   }
 
   @PostMapping

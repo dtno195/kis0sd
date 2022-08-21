@@ -1,10 +1,11 @@
 package com.sd.service;
 
+import com.sd.common.enums.Authority;
 import com.sd.common.exception.BusinessException;
 import com.sd.dto.user.UserRequest;
 import com.sd.dto.user.UserResponse;
-
-import java.time.OffsetDateTime;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @author D
@@ -45,6 +46,14 @@ public interface UserService {
    * @throws BusinessException the business exception
    */
   void delete(long id) throws BusinessException;
+
+  /**
+   * Gets all paging.
+   *
+   * @param pageRequest the page request
+   * @return the user paging
+   */
+  Page<UserResponse> getAllPaging(String keySearch, Authority authority, Pageable pageRequest);
 
   /**
    * Update last login time.
