@@ -120,6 +120,21 @@ public class UserServiceImpl implements UserService {
     return this.userRepository.findAll(keySearch, authority, pageRequest).map(UserResponse::fromEntity);
   }
 
+  /**
+   * Gets available user by username.
+   *
+   * @param username the username
+   * @return the user response
+   * @throws BusinessException the business exception
+   */
+  @Transactional(readOnly = true)
+  @Override
+  public UserResponse getByUsername(String username) throws BusinessException {
+    return this.userRepository.findByUsernameAndIsDeletedFalse(username)
+            .map(UserResponse::fromEntity)
+            .orElseThrow(() -> new BusinessException(BusinessMessage.NOT_FOUND, ResponseCode.CODE_BUSINESS));
+  }
+
 
   /**
    * Update last login time.

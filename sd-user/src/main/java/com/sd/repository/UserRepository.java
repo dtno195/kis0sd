@@ -41,7 +41,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 
 //  @Query(value = "SELECT username FROM User WHERE id = :id")
-  String findUsernameById(int userId);
+  String findUsernameById(long userId);
 
 //  @Modifying
 //  @Query(value = "UPDATE User u SET u.lastLoginTime = :lastLoginTime WHERE u.id = :id")

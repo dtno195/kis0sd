@@ -29,7 +29,7 @@ public class RefreshToken extends BaseEntity implements Serializable {
    */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private long id;
 
   /**
    * The Token.
@@ -41,7 +41,7 @@ public class RefreshToken extends BaseEntity implements Serializable {
    * The User id.
    */
   @Column(name = "user_id", nullable = false)
-  private int userId;
+  private long userId;
 
   /**
    * The Is active.

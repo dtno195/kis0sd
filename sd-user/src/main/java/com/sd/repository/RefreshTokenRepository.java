@@ -42,7 +42,7 @@ public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Inte
    */
   @Modifying
   @Query("UPDATE RefreshToken rf SET rf.isActive = false WHERE rf.id = :id")
-  void deactivateByTokenId(@Param("id") int id);
+  void deactivateByTokenId(@Param("id") long id);
 
   /**
    * Deactivate all refresh tokens by user id.
@@ -51,7 +51,7 @@ public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Inte
    */
   @Modifying
   @Query("UPDATE RefreshToken rf SET rf.isActive = false WHERE rf.userId = :userId")
-  void deactivateAllByUserId(@Param("userId") int userId);
+  void deactivateAllByUserId(@Param("userId") long userId);
 
   /**
    * Delete all by user id equals.
@@ -61,5 +61,5 @@ public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Inte
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   @Modifying
   @Query("DELETE FROM RefreshToken rf WHERE rf.userId = :userId")
-  void deleteAllByUserIdEquals(@Param("userId") int userId);
+  void deleteAllByUserIdEquals(@Param("userId") long userId);
 }

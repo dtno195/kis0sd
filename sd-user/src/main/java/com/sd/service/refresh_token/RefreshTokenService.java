@@ -18,7 +18,7 @@ public interface RefreshTokenService {
    * @return the refresh token
    * @throws BusinessException the business exception
    */
-  RefreshToken create(int userId) throws BusinessException;
+  RefreshToken create(long userId) throws BusinessException;
 
   /**
    * Delete by ids.

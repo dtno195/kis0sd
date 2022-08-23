@@ -63,4 +63,13 @@ public interface UserService {
    * @throws BusinessException the business exception
    */
 //  void updateLastLoginTime(long id, OffsetDateTime loginTime) throws BusinessException;
+
+  /**
+   * Gets available user by username.
+   *
+   * @param username the username
+   * @return the user response
+   * @throws BusinessException the business exception
+   */
+  UserResponse getByUsername(String username) throws BusinessException;
 }

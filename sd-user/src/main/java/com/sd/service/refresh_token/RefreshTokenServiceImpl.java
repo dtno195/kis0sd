@@ -56,7 +56,7 @@ public class RefreshTokenServiceImpl implements RefreshTokenService{
   protected final UserRepository userRepository;
 
   @Override
-  public RefreshToken create(int userId) throws BusinessException {
+  public RefreshToken create(long userId) throws BusinessException {
 
     this.refreshTokenRepo.deactivateAllByUserId(userId);
     final LocalDate expiryDate = LocalDate.now(ZoneOffset.UTC).plusDays(this.EXPIRATION_DAYS);
@@ -85,7 +85,7 @@ public class RefreshTokenServiceImpl implements RefreshTokenService{
     RefreshToken currentRefreshToken = this.refreshTokenRepo
             .findByTokenEquals(refreshTokenUsing)
             .orElseThrow(() -> new BusinessException(BusinessMessage.NOT_FOUND));
-    int userId = currentRefreshToken.getUserId();
+    long userId = currentRefreshToken.getUserId();
 
     if (currentRefreshToken.getExpiryDate().isBefore(LocalDate.now(ZoneOffset.UTC))) {
       // Refresh token is expired. User must re-login
