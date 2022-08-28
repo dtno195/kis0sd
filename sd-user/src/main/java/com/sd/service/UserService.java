@@ -7,6 +7,8 @@ import com.sd.dto.user.UserResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.OffsetDateTime;
+
 /**
  * @author D
  */
@@ -62,7 +64,7 @@ public interface UserService {
    * @param loginTime the login time
    * @throws BusinessException the business exception
    */
-//  void updateLastLoginTime(long id, OffsetDateTime loginTime) throws BusinessException;
+  void updateLastLoginTime(long id, OffsetDateTime loginTime) throws BusinessException;
 
   /**
    * Gets available user by username.

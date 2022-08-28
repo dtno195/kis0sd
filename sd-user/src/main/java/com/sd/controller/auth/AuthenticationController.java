@@ -68,13 +68,13 @@ public class AuthenticationController {
     SecurityContextHolder.getContext().setAuthentication(authentication);
     UserResponse loginUser = this.userService.getByUsername(((UserDetailsImpl) authentication.getPrincipal()).getUsername());
 
-//    this.userService.updateLastLoginTime(loginUser.getId(), signInTime);
+    this.userService.updateLastLoginTime(loginUser.getId(), signInTime);
     loginUser.setLastLoginTime(signInTime);
-//    final String refreshToken = this.refreshTokenService.create(loginUser.getId()).getToken();
+    final String refreshToken = this.refreshTokenService.create(loginUser.getId()).getToken();
 
     final String jwtToken = this.jwtProvider.generateToken(loginUser.getUsername());
     System.out.println(jwtToken);
-    return ResponseEntity.ok().body(new SignInResponse("refreshToken", jwtToken, loginUser));
+    return ResponseEntity.ok().body(new SignInResponse(refreshToken, jwtToken, loginUser));
   }
 
   /**

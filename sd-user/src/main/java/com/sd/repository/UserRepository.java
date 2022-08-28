@@ -40,10 +40,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
   Page<User> findAll(@Param(value = "keySearch") String keySearch, @Param(value = "authority") Authority authority, Pageable pageable);
 
 
-//  @Query(value = "SELECT username FROM User WHERE id = :id")
-  String findUsernameById(long userId);
+  @Query(value = "SELECT username FROM User WHERE id = :id")
+  String findUsernameById(long id);
 
-//  @Modifying
-//  @Query(value = "UPDATE User u SET u.lastLoginTime = :lastLoginTime WHERE u.id = :id")
-//  void updateLastLoginTime(long id, OffsetDateTime loginTime);
+  @Modifying
+  @Query(value = "UPDATE User u SET u.lastLoginTime = :lastLoginTime WHERE u.id = :id")
+  void updateLastLoginTime(@Param(value = "id") long id, @Param(value = "lastLoginTime") OffsetDateTime loginTime);
 }

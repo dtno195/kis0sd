@@ -11,7 +11,6 @@ import com.sd.dto.user.UserResponse;
 import com.sd.entity.User;
 import com.sd.repository.UserRepository;
 import com.sd.service.UserService;
-import com.sd.util.AppUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -143,9 +142,9 @@ public class UserServiceImpl implements UserService {
    * @param loginTime the login time
    * @throws BusinessException the business exception
    */
-//  @Override
-//  public void updateLastLoginTime(long id, OffsetDateTime loginTime) throws BusinessException {
-//    this.userRepository.updateLastLoginTime(id, loginTime);
-//  }
+  @Override
+  public void updateLastLoginTime(long id, OffsetDateTime loginTime) throws BusinessException {
+    this.userRepository.updateLastLoginTime(id, loginTime);
+  }
 
 }

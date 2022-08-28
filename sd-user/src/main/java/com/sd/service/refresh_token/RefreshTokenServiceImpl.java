@@ -30,11 +30,6 @@ import java.util.UUID;
 public class RefreshTokenServiceImpl implements RefreshTokenService{
 
   /**
-   * The Seconds block use refresh token.
-   */
-  private final int SECONDS_BLOCK_USE_REFRESH_TOKEN = 60;
-
-  /**
    * The Expiration days.
    */
   @Value("${security.refresh-token.expiration}")
@@ -118,6 +113,7 @@ public class RefreshTokenServiceImpl implements RefreshTokenService{
    */
   private boolean isSpamApiRefreshToken(@NonNull RefreshToken refreshToken) {
     final OffsetDateTime now = OffsetDateTime.now(ZoneOffset.UTC);
-    return refreshToken.getCreatedTime().plusSeconds(this.SECONDS_BLOCK_USE_REFRESH_TOKEN).isAfter(now);
+    int SECONDS_BLOCK_USE_REFRESH_TOKEN = 60;
+    return refreshToken.getCreatedTime().plusSeconds(SECONDS_BLOCK_USE_REFRESH_TOKEN).isAfter(now);
   }
 }
