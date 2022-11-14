@@ -10,9 +10,9 @@ import org.springframework.kafka.config.TopicBuilder;
  */
 @Configuration
 public class KafkaTopicConfig {
-  @Bean
-  public NewTopic topic() {
-    return TopicBuilder.name("sd-broker")
-            .build();
-  }
+//  @Bean
+//  public NewTopic topic() {
+//    return TopicBuilder.name("sd-broker")
+//            .build();
+//  }
 }

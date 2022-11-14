@@ -25,20 +25,20 @@ import java.util.List;
 @Slf4j
 public class BrokerController {
 
-  Logger logger = LoggerFactory.getLogger(BrokerController.class);
-
-  private final Producer producer;
-
-  public BrokerController(Producer producer) {
-    this.producer = producer;
-  }
-
-
-  @PostMapping("/publish")
-  public void messageToTopic(@RequestParam("message") String message){
-
-    this.producer.sendMessage(message);
+//  Logger logger = LoggerFactory.getLogger(BrokerController.class);
+//
+//  private final Producer producer;
+//
+//  public BrokerController(Producer producer) {
+//    this.producer = producer;
+//  }
 
 
-  }
+//  @PostMapping("/publish")
+//  public void messageToTopic(@RequestParam("message") String message){
+//
+//    this.producer.sendMessage(message);
+//
+//
+//  }
 }

@@ -25,7 +25,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="sd-actuator" options="-parameters" />
       <module name="sd-broker" options="-parameters" />
-      <module name="sd-common" options="-parameters" />
+      <module name="sd-common" options="" />
       <module name="sd-gateway" options="-parameters" />
       <module name="sd-user" options="-parameters" />
     </option>
