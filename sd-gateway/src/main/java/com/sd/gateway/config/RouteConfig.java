@@ -12,16 +12,16 @@ import reactor.core.publisher.Mono;
  */
 @Configuration
 public class RouteConfig {
-  //
-//  @Bean
-//  public RouteLocator routeLocator(RouteLocatorBuilder builder) {
-//    return builder.routes()
-//            .route(r -> r.path("/user/**")
-//                    .uri("http://localhost:16002/"))
-//            .route(r -> r.path("/broker/**")
-//                    .uri("http://localhost:160032/"))
-//            .build();
-//  }
+
+  @Bean
+  public RouteLocator routeLocator(RouteLocatorBuilder builder) {
+    return builder.routes()
+            .route(r -> r.path("/user/**")
+                    .uri("http://localhost:16002/"))
+            .route(r -> r.path("/broker/**")
+                    .uri("http://localhost:16003/"))
+            .build();
+  }
   @Bean
   public KeyResolver userKeyResolver() {
     return exchange -> Mono.just("1");

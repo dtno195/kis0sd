@@ -33,6 +33,10 @@ public class BrokerController {
 //    this.producer = producer;
 //  }
 
+  @GetMapping
+  public String test(){
+    return "Broker service";
+  }
 
 //  @PostMapping("/publish")
 //  public void messageToTopic(@RequestParam("message") String message){
