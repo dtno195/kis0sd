@@ -1,0 +1,46 @@
+{
+  "name": "sd-fe-2023",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "local": "nuxt --dotenv .env.local",
+    "build": "nuxt build --dotenv .env.local",
+    "build:dev": "nuxt build --dotenv .env.dev",
+    "build:test": "nuxt build --dotenv .env.test",
+    "build:prod": "nuxt build --dotenv .env.prod",
+    "build:prod-backup": "nuxt build --dotenv .env.prod-backup",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "start-test": "nuxt --dotenv .env.test",
+    "start-prod": "nuxt --dotenv .env.prod",
+    "run-test": "cypress run --record --key 1f68bc4b-8446-4f65-8a4b-17dba0101b05",
+    "ci": "start-server-and-test start-test http://localhost:3000 run-test"
+},
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@vue/composition-api": "^1.4.1",
+    "cookie-universal-nuxt": "^2.1.5",
+    "core-js": "^3.25.3",
+    "element-ui": "^2.15.10",
+    "file-saver": "^2.0.5",
+    "moment": "^2.29.1",
+    "nuxt": "^2.15.8",
+    "v-mask": "^2.3.0",
+    "vee-validate": "^3.4.14",
+    "vue-currency-input": "1.22.4",
+    "vuex-persistedstate": "^4.1.0",
+    "vue": "^2.7.10",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.15.7",
+    "@nuxt/typescript-build": "^2.1.0",
+    "chromedriver": "^99.0.0",
+    "cypress": "^9.7.0",
+    "sass": "^1.49.9",
+    "sass-loader": "10",
+    "start-server-and-test": "^1.14.0"
+  }
+}

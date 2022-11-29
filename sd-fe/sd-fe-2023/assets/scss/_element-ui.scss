@@ -1,0 +1,89 @@
+/* theme color */
+
+$--color-white: #ffffff;
+// $--color-primary: #00bcd4 !default;
+$--color-primary: #009ef7 !default;
+$--color-primary-light-1: mix( $--color-white, $--color-primary, 10%) !default;
+
+/* 53a8ff */
+
+$--color-primary-light-2: mix( $--color-white, $--color-primary, 20%) !default;
+
+/* 66b1ff */
+
+$--color-primary-light-3: mix( $--color-white, $--color-primary, 30%) !default;
+
+/* 79bbff */
+
+$--color-primary-light-4: mix( $--color-white, $--color-primary, 40%) !default;
+
+/* 8cc5ff */
+
+$--color-primary-light-5: mix( $--color-white, $--color-primary, 50%) !default;
+
+/* a0cfff */
+
+$--color-primary-light-6: mix( $--color-white, $--color-primary, 60%) !default;
+
+/* b3d8ff */
+
+$--color-primary-light-7: mix( $--color-white, $--color-primary, 70%) !default;
+
+/* c6e2ff */
+
+$--color-primary-light-8: mix( $--color-white, $--color-primary, 80%) !default;
+
+/* d9ecff */
+
+$--color-primary-light-9: mix( $--color-white, $--color-primary, 90%) !default;
+
+/* ecf5ff */
+
+$--color-success: #66bb6a !default;
+$--color-warning: #ffa726 !default;
+$--color-danger: #ff7043 !default;
+$--color-info: #78909c !default;
+
+/* icon font path, required */
+
+$--font-path: "~element-ui/lib/theme-chalk/fonts";
+@import "~element-ui/packages/theme-chalk/src/index";
+.cell {
+    display: flex;
+}
+
+.card-tabs {
+    .el-tabs__nav {
+        width: 100%;
+    }
+    .el-tabs__item {
+        width: 200px;
+        text-align: center !important;
+    }
+    .el-tabs__header {
+        background-color: #fff;
+    }
+    i.el-icon.el-icon-arrow-right {
+        color: black;
+    }
+    .top-10-ready-order-class {
+        background-color: #ffe0b2 !important;
+        td {
+            background-color: #ffe0b2 !important;
+        }
+    }
+    .ready-order-class {
+        background-color: #fff9c4 !important;
+        td {
+            background-color: #fff9c4 !important;
+        }
+    }
+}
+
+.el-table {
+    overflow: initial;
+}
+
+.el-tabs__content {
+    overflow: initial;
+}
