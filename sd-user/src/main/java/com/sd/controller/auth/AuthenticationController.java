@@ -58,7 +58,7 @@ public class AuthenticationController {
    * @return the response
    */
   @PostMapping("/sign-in")
-  public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest signInRequest) {
+  public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest signInRequest) throws Exception {
     final OffsetDateTime signInTime = OffsetDateTime.now(ZoneOffset.UTC);
 
     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken
